@@ -1,0 +1,4 @@
+__pycache__
+manim-env/
+weights.npz
+media/
