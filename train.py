@@ -226,7 +226,7 @@ def main():
     saved = dict(np.load(WEIGHTS)) if WEIGHTS.exists() else {}
 
     if args.only != "hidden":
-        # Scene 1: no hidden layers  ->  y = softmax(W x + b)
+        # Scene 1: no hidden layers  
         p_lin = dict(zip(("L_W", "L_b"), init_layer(rng, 10, 784)))
         fit("linear", p_lin, lin_grads, lambda p, X: lin_forward(p, X), data,
             aug=dict(rot=6, scale=(0.92, 1.08), shear=0.08, shift=1.5),
@@ -235,7 +235,7 @@ def main():
         np.savez(WEIGHTS, **{k: v.astype(np.float32) for k, v in saved.items()})
 
     if args.only != "linear":
-        # Scene 2: two hidden layers  ->  784 -> 32 -> 16 -> 10
+        # Scene 2: 2 hidden layers
         p_mlp = {}
         for i, (n_out, n_in) in enumerate([(H1, 784), (H2, H1), (10, H2)], start=1):
             p_mlp["W%d" % i], p_mlp["b%d" % i] = init_layer(rng, n_out, n_in)

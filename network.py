@@ -33,12 +33,12 @@ def load_weights(path=WEIGHTS):
 
 # ---------------------------------------------------------------- forward passes
 def linear_scores(w, x):
-    """Scene 1 raw scores: x (784,) -> z (10,)."""
+    """Scene 1.  z = W x + b :  x (784,)  ->  z (10,)   one raw score per digit."""
     return w["L_W"] @ x + w["L_b"]
 
 
 def linear_forward(w, x):
-    """Scene 1 probabilities: x (784,) -> y (10,)."""
+    """Scene 1.  softmax turns the 10 scores into probabilities that sum to 1."""
     return softmax(linear_scores(w, x))
 
 
